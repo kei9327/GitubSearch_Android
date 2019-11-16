@@ -1,7 +1,7 @@
 package kr.wayde.githubsearch.ui.main
 
-import androidx.lifecycle.ViewModel
+import kr.wayde.githubsearch.ui.BaseViewModel
 
-class MainViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class MainViewModel : BaseViewModel(){
+
 }

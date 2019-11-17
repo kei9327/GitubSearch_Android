@@ -23,6 +23,7 @@ class UserSearchViewModel(private val searchUsersUseCase: SearchUserUseCase) : B
 
     private val result = MutableLiveData<PagedResult<User>>()
     val pagedList : LiveData<PagedList<User>> = Transformations.switchMap(result){it.data}
+    val profileLogin = MutableLiveData<String>()
 
     fun onClickSearchUser(query: String?) {
         query
@@ -41,4 +42,10 @@ class UserSearchViewModel(private val searchUsersUseCase: SearchUserUseCase) : B
             }
 
     }
+
+    fun onClickUser(userName: String) {
+        profileLogin.postValue(userName)
+    }
+
+
 }

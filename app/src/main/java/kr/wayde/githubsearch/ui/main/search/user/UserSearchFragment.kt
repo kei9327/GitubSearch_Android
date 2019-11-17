@@ -8,12 +8,15 @@ import kotlinx.android.synthetic.main.fragment_user_search.*
 import kr.wayde.githubsearch.R
 import kr.wayde.githubsearch.ui.BaseFragment
 import kr.wayde.githubsearch.databinding.FragmentUserSearchBinding
+import kr.wayde.githubsearch.ui.profile.ProfileActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserSearchFragment : BaseFragment() {
     private lateinit var searchView: SearchView
     private val viewModel by viewModel<UserSearchViewModel>()
-    private val adapter = UserSearchAdapter()
+    private val adapter by lazy {
+        UserSearchAdapter(viewModel)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +57,10 @@ class UserSearchFragment : BaseFragment() {
 
         viewModel.pagedList.observe(this, Observer {
             adapter.submitList(it)
+        })
+
+        viewModel.profileLogin.observe(this, Observer {
+            startActivity(ProfileActivity.getStartIntent(context!!, it))
         })
     }
 

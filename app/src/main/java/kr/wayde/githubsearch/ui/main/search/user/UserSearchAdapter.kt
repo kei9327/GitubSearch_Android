@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.wayde.githubsearch.databinding.ItemSearchUserBinding
 import kr.wayde.githubsearch.domain.entity.User
 
-class UserSearchAdapter: PagedListAdapter<User, UserSearchAdapter.SearchResultViewHolder>(
+class UserSearchAdapter(val viewModel: UserSearchViewModel) : PagedListAdapter<User, UserSearchAdapter.SearchResultViewHolder>(
     ItemDiffCallBack
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultViewHolder {
@@ -18,7 +18,7 @@ class UserSearchAdapter: PagedListAdapter<User, UserSearchAdapter.SearchResultVi
 
     override fun onBindViewHolder(holder: SearchResultViewHolder, position: Int) {
         getItem(position)?.let {
-            holder.binding.viewModel = UserSearchItemViewModel(it)
+            holder.binding.viewModel = UserSearchItemViewModel(it, viewModel)
         }
     }
 

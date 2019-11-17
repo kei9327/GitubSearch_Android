@@ -85,15 +85,9 @@ dependencies {
     implementation "org.koin:koin-android-scope:$rootProject.koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$rootProject.koin_version"
     testImplementation "org.koin:koin-test:$rootProject.koin_version"
-
-//    // Room
-//    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
-//    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
-//    implementation "androidx.room:room-rxjava2:$rootProject.roomVersion"
-
-//    // Navigation
-//    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
-//    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
+    // Navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
 
     // KTX
     implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
@@ -110,7 +104,5 @@ dependencies {
     //COROUTINES
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutinesVersion"
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
 
 }

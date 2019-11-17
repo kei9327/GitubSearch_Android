@@ -31,10 +31,10 @@ class UserFeedFragment(var userName: String): BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         rvEvents.adapter = adapter
 
-        viewModel.getUserFeeds(userName)
         viewModel.result.observe(this, Observer {
             adapter.userEventList = it
             adapter.notifyDataSetChanged()
         })
+        viewModel.getUserFeeds(userName)
     }
 }

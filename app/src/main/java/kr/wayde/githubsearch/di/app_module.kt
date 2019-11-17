@@ -4,12 +4,15 @@ import kr.wayde.githubsearch.BuildConfig
 import kr.wayde.githubsearch.data.interactor.GithubDataSource
 import kr.wayde.githubsearch.data.repository.GithubRemote
 import kr.wayde.githubsearch.domain.interactor.usecases.GetUserEventsUseCase
+import kr.wayde.githubsearch.domain.interactor.usecases.GetUserReposUseCase
+import kr.wayde.githubsearch.domain.interactor.usecases.GetUserStarredrUseCase
 import kr.wayde.githubsearch.domain.interactor.usecases.SearchUserUseCase
 import kr.wayde.githubsearch.domain.repository.GithubRepository
 import kr.wayde.githubsearch.domain.schedulers.SchedulersProvider
 import kr.wayde.githubsearch.romote.GithubRemoteImpl
 import kr.wayde.githubsearch.romote.GithubServiceFactory
 import kr.wayde.githubsearch.romote.mapper.RepoEntityMapper
+import kr.wayde.githubsearch.romote.mapper.StarredEntityMapper
 import kr.wayde.githubsearch.romote.mapper.UserEntityMapper
 import kr.wayde.githubsearch.romote.mapper.UserEvnetEntityMapper
 import kr.wayde.githubsearch.ui.main.MainViewModel
@@ -17,6 +20,10 @@ import kr.wayde.githubsearch.ui.main.search.user.UserSearchItemViewModel
 import kr.wayde.githubsearch.ui.main.search.user.UserSearchViewModel
 import kr.wayde.githubsearch.ui.profile.feed.UserFeedItemViewModel
 import kr.wayde.githubsearch.ui.profile.feed.UserFeedViewModel
+import kr.wayde.githubsearch.ui.profile.repo.UserRepositoryItemViewModel
+import kr.wayde.githubsearch.ui.profile.repo.UserRepositoryViewModel
+import kr.wayde.githubsearch.ui.profile.starred.UserStarredItemViewModel
+import kr.wayde.githubsearch.ui.profile.starred.UserStarredViewModel
 import kr.wayde.githubsearch.util.AppSchedulerProvider
 import kr.wayde.githubsearch.util.Logger
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -34,11 +41,17 @@ val viewModelModule = module {
     viewModel { UserSearchItemViewModel(get(), get()) }
     viewModel { UserFeedViewModel(get()) }
     viewModel { UserFeedItemViewModel(get()) }
+    viewModel { UserRepositoryViewModel(get()) }
+    viewModel { UserRepositoryItemViewModel(get()) }
+    viewModel { UserStarredViewModel(get()) }
+    viewModel { UserStarredItemViewModel(get()) }
 }
 
 val domainModule = module {
     single { SearchUserUseCase(get(), get()) }
     single { GetUserEventsUseCase(get(), get()) }
+    single { GetUserReposUseCase(get(), get()) }
+    single { GetUserStarredrUseCase(get(), get()) }
 }
 
 val dataModule = module {
@@ -46,8 +59,9 @@ val dataModule = module {
     single { GithubDataSource(get()) as GithubRepository }
 
     //remote
-    single { GithubRemoteImpl(get(), get(), get(), get()) as GithubRemote }
+    single { GithubRemoteImpl(get(), get(), get(), get(), get()) as GithubRemote }
     single { RepoEntityMapper() }
+    single { StarredEntityMapper() }
     single { UserEntityMapper() }
     single { UserEvnetEntityMapper() }
     single {

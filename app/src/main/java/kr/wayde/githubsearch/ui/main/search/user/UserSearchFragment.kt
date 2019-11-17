@@ -9,6 +9,7 @@ import kr.wayde.githubsearch.R
 import kr.wayde.githubsearch.ui.BaseFragment
 import kr.wayde.githubsearch.databinding.FragmentUserSearchBinding
 import kr.wayde.githubsearch.ui.profile.ProfileActivity
+import kr.wayde.githubsearch.ui.profile.repo.UserRepositoryAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserSearchFragment : BaseFragment() {

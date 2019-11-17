@@ -9,18 +9,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kr.wayde.githubsearch.domain.entity.User
 import kr.wayde.githubsearch.domain.interactor.usecases.SearchUserUseCase
-import kr.wayde.githubsearch.paging.PagedResult
-import kr.wayde.githubsearch.paging.SearchUserDataSourceFactory
+import kr.wayde.githubsearch.pagingnation.PagedResult
+import kr.wayde.githubsearch.pagingnation.SearchUserPagingNationFactory
 import kr.wayde.githubsearch.ui.BaseViewModel
+import kr.wayde.githubsearch.util.config
 
 class UserSearchViewModel(private val searchUsersUseCase: SearchUserUseCase) : BaseViewModel() {
-    private val config: PagedList.Config = PagedList.Config.Builder().apply {
-        setInitialLoadSizeHint(20)
-        setPageSize(20)
-        setPrefetchDistance(5)
-        setEnablePlaceholders(true)
-    }.build()
-
     private val result = MutableLiveData<PagedResult<User>>()
     val pagedList : LiveData<PagedList<User>> = Transformations.switchMap(result){it.data}
     val profileLogin = MutableLiveData<String>()
@@ -32,7 +26,7 @@ class UserSearchViewModel(private val searchUsersUseCase: SearchUserUseCase) : B
                 launch {
                     val temp = withContext(coroutineContext) {
                         val sourceFactory =
-                            SearchUserDataSourceFactory(compositeDisposable, it, searchUsersUseCase)
+                            SearchUserPagingNationFactory(compositeDisposable, it, searchUsersUseCase)
                         val livePagedList = LivePagedListBuilder(sourceFactory, config).build()
                         return@withContext PagedResult(data = livePagedList)
                     }

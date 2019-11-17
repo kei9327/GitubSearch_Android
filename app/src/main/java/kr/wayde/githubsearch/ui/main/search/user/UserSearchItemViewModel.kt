@@ -1,7 +1,6 @@
 package kr.wayde.githubsearch.ui.main.search.user
 
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.MutableLiveData
 import com.facebook.drawee.view.SimpleDraweeView
 import kr.wayde.githubsearch.domain.entity.User
 import kr.wayde.githubsearch.ui.BaseObservableViewModel

@@ -1,13 +1,13 @@
-package kr.wayde.githubsearch.paging
+package kr.wayde.githubsearch.pagingnation
 
 import androidx.paging.PageKeyedDataSource
 import io.reactivex.disposables.CompositeDisposable
 import kr.wayde.githubsearch.domain.entity.User
 import kr.wayde.githubsearch.domain.interactor.usecases.SearchUserUseCase
 
-class SearchUserDataSource(val compositeDisposable: CompositeDisposable,
-                           val query: String,
-                           val searchUserUseCase: SearchUserUseCase):
+class SearchUserPagingNation(val compositeDisposable: CompositeDisposable,
+                             val query: String,
+                             val searchUserUseCase: SearchUserUseCase):
         PageKeyedDataSource<Int, User>() {
 
     override fun loadInitial(

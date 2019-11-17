@@ -1,4 +1,4 @@
-package kr.wayde.githubsearch.paging
+package kr.wayde.githubsearch.pagingnation
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList

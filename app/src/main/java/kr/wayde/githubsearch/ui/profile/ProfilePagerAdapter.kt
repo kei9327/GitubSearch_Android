@@ -11,23 +11,29 @@ import kr.wayde.githubsearch.ui.profile.starred.UserStarredFragment
 class ProfilePagerAdapter(val userName:String, fragmentManager: FragmentManager): FragmentStatePagerAdapter(fragmentManager) {
     override fun getItem(position: Int): Fragment {
         return when(position) {
-            1-> UserFeedFragment(userName)
-            2-> UserRepositoryFragment(userName)
-            3-> UserStarredFragment(userName)
+//            1-> UserFeedFragment(userName)
+//            2-> UserRepositoryFragment(userName)
+//            3-> UserStarredFragment(userName)
+            0-> UserFeedFragment(userName)
+            1-> UserRepositoryFragment(userName)
+            2-> UserStarredFragment(userName)
             else-> EmptyFragment()
         }
     }
 
     override fun getCount(): Int {
-        return 5
+        return 3
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when(position) {
-            0 -> "OVERVIEW"
-            1 -> "FEED"
-            2 -> "REPOSITORIES"
-            3 -> "STARRED"
+//            0 -> "OVERVIEW"
+//            1 -> "FEED"
+//            2 -> "REPOSITORIES"
+//            3 -> "STARRED"
+            0 -> "FEED"
+            1 -> "REPOSITORIES"
+            2 -> "STARRED"
             else -> ""
         }
     }
